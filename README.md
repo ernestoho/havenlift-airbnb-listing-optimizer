@@ -2,7 +2,7 @@
 
 HavenLift is a single-page SaaS landing page with an interactive demo for an AI-powered Airbnb listing optimizer. It helps property hosts optimize their listings by accepting an Airbnb URL and generating a mock optimization report, including before/after metrics, AI-generated recommendations for titles, summaries, pricing, and visual improvements. Built with a focus on visual excellence and user delight, the application features a polished marketing interface inspired by Stripe, Linear, and Airbnb.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ernestoho/havenlift-airbnb-listing-optimizer)
 
 ## Key Features
 
@@ -29,7 +29,7 @@ The project follows best practices for maintainability, with a component-based a
 
 To get started immediately, deploy to Cloudflare Workers with one click:
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ernestoho/havenlift-airbnb-listing-optimizer)
 
 ## Installation
 
@@ -124,7 +124,7 @@ Deploy to Cloudflare Workers for global edge delivery (free tier available). The
 
 For one-click deployment from this repo:
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ernestoho/havenlift-airbnb-listing-optimizer)
 
 ### Production Notes
 
