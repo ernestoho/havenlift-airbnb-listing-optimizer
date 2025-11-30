@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useInView } from '@/hooks/use-in-view';
+import { useInView } from 'react-intersection-observer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 interface FeatureCardProps {
@@ -26,9 +26,9 @@ export function FeatureCard({ icon, title, children, className }: FeatureCardPro
       variants={variants}
       transition={{ duration: 0.5 }}
     >
-      <Card className={cn("h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border border-accent/30 hover:border-primary/50", className)}>
+      <Card className={cn("h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1", className)}>
         <CardHeader className="flex flex-row items-center gap-4 pb-4">
-          <div className="p-3 rounded-lg bg-accent/20 text-accent-foreground">
+          <div className="p-3 rounded-lg bg-primary/10 text-primary">
             {icon}
           </div>
           <CardTitle className="text-xl">{title}</CardTitle>

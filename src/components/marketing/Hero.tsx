@@ -20,7 +20,7 @@ export function Hero({ url, setUrl, handleOptimize, isLoading, error }: HeroProp
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-primary/30" />
+        <div className="absolute inset-0 bg-background/30" />
       </div>
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -62,7 +62,7 @@ export function Hero({ url, setUrl, handleOptimize, isLoading, error }: HeroProp
               <Button
                 type="submit"
                 size="lg"
-                className="h-14 px-8 text-base font-semibold w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground"
+                className="h-14 px-8 text-base font-semibold w-full sm:w-auto"
                 disabled={isLoading}
               >
                 {isLoading ? 'Analizando...' : 'Optimizar'}
