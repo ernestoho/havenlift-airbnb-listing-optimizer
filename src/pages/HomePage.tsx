@@ -18,7 +18,7 @@ import {
   BadgeCheck,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { useInView } from '@/hooks/use-in-view';
 const urlSchema = z.string().url({ message: "Por favor, introduce una URL válida." }).refine(
   (url) => url.includes('airbnb.com'),
   { message: "La URL debe ser de airbnb.com" }
