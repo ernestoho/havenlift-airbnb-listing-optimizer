@@ -36,7 +36,7 @@ interface ResultsPanelProps {
   isLoading: boolean;
 }
 const MetricCard = ({ title, value, change, isCurrency = false }: { title: string; value: number; change: number; isCurrency?: boolean }) => (
-  <div className="p-4 bg-secondary rounded-lg text-center">
+  <div className="p-4 bg-secondary/80 rounded-lg text-center">
     <p className="text-sm text-muted-foreground">{title}</p>
     <p className="text-2xl font-bold text-foreground">
       {isCurrency ? `€${value.toFixed(2)}` : `${value.toFixed(isCurrency ? 2 : 0)}%`}
@@ -124,7 +124,13 @@ export function ResultsPanel({ report, isLoading }: ResultsPanelProps) {
                       borderRadius: 'var(--radius)',
                     }}
                   />
-                  <Area type="monotone" dataKey="value" stroke="hsl(var(--primary))" fill="hsl(var(--primary) / 0.1)" strokeWidth={2} />
+                  <defs>
+                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.8}/>
+                      <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <Area type="monotone" dataKey="value" stroke="hsl(var(--primary))" fill="url(#colorUv)" strokeWidth={2} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -146,7 +152,7 @@ export function ResultsPanel({ report, isLoading }: ResultsPanelProps) {
               {report.suggestions.map((s, i) => (
                 <Card key={i}>
                   <CardContent className="p-4 flex items-start gap-4">
-                    <Badge variant={s.score > 8 ? "default" : "secondary"}>Puntuación: {s.score}/10</Badge>
+                    <Badge variant={s.score > 8 ? "default" : "secondary"} className={s.score > 8 ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'}>Puntuación: {s.score}/10</Badge>
                     <p className="text-sm text-muted-foreground flex-1">{s.copy}</p>
                   </CardContent>
                 </Card>

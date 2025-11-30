@@ -63,7 +63,7 @@ const features = [
   { icon: <BadgeCheck className="h-8 w-8" />, title: "Análisis de Cumplimiento", description: "Revisamos que tu anuncio cumpla con las directrices de la plataforma para evitar penalizaciones." },
   { icon: <Search className="h-8 w-8" />, title: "Espía a la Competencia", description: "Identificamos a tus competidores directos y te mostramos sus fortalezas y debilidades." },
 ];
-const SectionWrapper = ({ children }: { children: React.ReactNode }) => {
+const SectionWrapper = ({ children, className }: { children: React.ReactNode, className?: string }) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   return (
     <motion.div
@@ -71,6 +71,7 @@ const SectionWrapper = ({ children }: { children: React.ReactNode }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8 }}
+      className={className}
     >
       {children}
     </motion.div>
@@ -113,112 +114,104 @@ export function HomePage() {
             {(isLoading || report) && <ResultsPanel isLoading={isLoading} report={report} />}
           </div>
         </div>
-        <SectionWrapper>
-          <div className="py-12 md:py-20 bg-secondary">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <p className="text-4xl md:text-5xl font-bold text-foreground">
-                <span className="text-primary">+24%</span> Tarifa de reserva
+        <SectionWrapper className="py-12 md:py-20 bg-secondary">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-4xl md:text-5xl font-bold text-foreground">
+              <span className="text-primary">+24%</span> Tarifa de reserva
+            </p>
+            <p className="mt-2 text-muted-foreground">vs. competidores locales, según análisis de anfitriones de Airbnb.</p>
+          </div>
+        </SectionWrapper>
+        <SectionWrapper className="py-20 md:py-28">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Capacidades básicas</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Todo lo que necesitas para convertir tu anuncio en una máquina de reservas.
               </p>
-              <p className="mt-2 text-muted-foreground">vs. competidores locales, según análisis de anfitriones de Airbnb.</p>
+            </div>
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {features.map((feature) => (
+                <FeatureCard key={feature.title} icon={feature.icon} title={feature.title}>
+                  {feature.description}
+                </FeatureCard>
+              ))}
             </div>
           </div>
         </SectionWrapper>
-        <SectionWrapper>
-          <div className="py-20 md:py-28">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center max-w-2xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Capacidades básicas</h2>
-                <p className="mt-4 text-lg text-muted-foreground">
-                  Todo lo que necesitas para convertir tu anuncio en una máquina de reservas.
-                </p>
-              </div>
-              <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {features.map((feature) => (
-                  <FeatureCard key={feature.title} icon={feature.icon} title={feature.title}>
-                    {feature.description}
-                  </FeatureCard>
-                ))}
-              </div>
+        <SectionWrapper className="py-20 md:py-28 bg-secondary/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">¿Cómo funciona?</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                En solo tres pasos, obtén un plan de acción para optimizar tu anuncio.
+              </p>
             </div>
-          </div>
-        </SectionWrapper>
-        <SectionWrapper>
-          <div className="py-20 md:py-28 bg-secondary">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center max-w-2xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight">¿Cómo funciona?</h2>
-                <p className="mt-4 text-lg text-muted-foreground">
-                  En solo tres pasos, obtén un plan de acción para optimizar tu anuncio.
-                </p>
+            <div className="mt-16 space-y-16">
+              <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div className="flex-1">
+                  <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=2071&auto=format&fit=crop" alt="Paso 1" className="rounded-xl shadow-lg aspect-video object-cover" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-semibold">1. Pega tu URL</h3>
+                  <p className="mt-2 text-muted-foreground">Introduce la dirección de tu anuncio de Airbnb. Nuestro sistema la analizará al instante.</p>
+                </div>
               </div>
-              <div className="mt-16 space-y-16">
-                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                  <div className="flex-1">
-                    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=2071&auto=format&fit=crop" alt="Paso 1" className="rounded-xl shadow-lg aspect-video object-cover" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-semibold">1. Pega tu URL</h3>
-                    <p className="mt-2 text-muted-foreground">Introduce la dirección de tu anuncio de Airbnb. Nuestro sistema la analizará al instante.</p>
-                  </div>
+              <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
+                <div className="flex-1">
+                  <img src="https://images.unsplash.com/photo-1600585152225-358b5c1fac95?q=80&w=2070&auto=format&fit=crop" alt="Paso 2" className="rounded-xl shadow-lg aspect-video object-cover" />
                 </div>
-                <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
-                  <div className="flex-1">
-                    <img src="https://images.unsplash.com/photo-1600585152225-358b5c1fac95?q=80&w=2070&auto=format&fit=crop" alt="Paso 2" className="rounded-xl shadow-lg aspect-video object-cover" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-semibold">2. Recibe el Análisis</h3>
-                    <p className="mt-2 text-muted-foreground">Obtén un informe detallado con métricas, proyecciones y recomendaciones claras y accionables.</p>
-                  </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-semibold">2. Recibe el Análisis</h3>
+                  <p className="mt-2 text-muted-foreground">Obtén un informe detallado con métricas, proyecciones y recomendaciones claras y accionables.</p>
                 </div>
-                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                  <div className="flex-1">
-                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=2074&auto=format&fit=crop" alt="Paso 3" className="rounded-xl shadow-lg aspect-video object-cover" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-semibold">3. Aplica y Gana</h3>
-                    <p className="mt-2 text-muted-foreground">Implementa los cambios sugeridos y observa cómo mejoran tu visibilidad y tus ingresos.</p>
-                  </div>
+              </div>
+              <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div className="flex-1">
+                  <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=2074&auto=format&fit=crop" alt="Paso 3" className="rounded-xl shadow-lg aspect-video object-cover" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-semibold">3. Aplica y Gana</h3>
+                  <p className="mt-2 text-muted-foreground">Implementa los cambios sugeridos y observa cómo mejoran tu visibilidad y tus ingresos.</p>
                 </div>
               </div>
             </div>
           </div>
         </SectionWrapper>
-        <SectionWrapper>
-          <div className="py-20 md:py-28">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center max-w-2xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Confianza y Seguridad</h2>
-                <p className="mt-4 text-lg text-muted-foreground">
-                  Tus datos están seguros. Solo analizamos la información pública de tu anuncio.
-                </p>
-              </div>
-              <div className="mt-16 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <Card>
-                  <CardContent className="p-6">
-                    <ShieldCheck className="h-10 w-10 mx-auto text-primary" />
-                    <h3 className="mt-4 font-semibold">Análisis Seguro</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">No pedimos acceso a tu cuenta. Todo el análisis es externo y seguro.</p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6">
-                    <p className="text-4xl font-bold text-primary">1,000+</p>
-                    <h3 className="mt-2 font-semibold">Anfitriones Satisfechos</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">Únete a una comunidad de anfitriones que ya optimizan sus anuncios.</p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6">
-                    <BadgeCheck className="h-10 w-10 mx-auto text-primary" />
-                    <h3 className="mt-4 font-semibold">Cumplimiento de Normas</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">Nuestras sugerencias siempre respetan los términos de servicio de Airbnb.</p>
-                  </CardContent>
-                </Card>
-              </div>
+        <SectionWrapper className="py-20 md:py-28">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Confianza y Seguridad</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Tus datos están seguros. Solo analizamos la información pública de tu anuncio.
+              </p>
+            </div>
+            <div className="mt-16 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <Card className="border-accent/20">
+                <CardContent className="p-6">
+                  <ShieldCheck className="h-10 w-10 mx-auto text-primary" />
+                  <h3 className="mt-4 font-semibold">Análisis Seguro</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">No pedimos acceso a tu cuenta. Todo el análisis es externo y seguro.</p>
+                </CardContent>
+              </Card>
+              <Card className="border-accent/20">
+                <CardContent className="p-6">
+                  <p className="text-4xl font-bold text-primary">1,000+</p>
+                  <h3 className="mt-2 font-semibold">Anfitriones Satisfechos</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">Únete a una comunidad de anfitriones que ya optimizan sus anuncios.</p>
+                </CardContent>
+              </Card>
+              <Card className="border-accent/20">
+                <CardContent className="p-6">
+                  <BadgeCheck className="h-10 w-10 mx-auto text-primary" />
+                  <h3 className="mt-4 font-semibold">Cumplimiento de Normas</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">Nuestras sugerencias siempre respetan los términos de servicio de Airbnb.</p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </SectionWrapper>
-        <div className="bg-gradient-to-tr from-primary/90 to-primary">
+        <div className="bg-gradient-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary-foreground">
               Convierte tu Airbnb en una máquina de reservas
@@ -233,7 +226,7 @@ export function HomePage() {
                   onChange={(e) => setUrl(e.target.value)}
                   disabled={isLoading}
                 />
-                <Button type="submit" size="lg" className="h-14 px-8 text-base font-semibold bg-orange-500 hover:bg-orange-600 text-white w-full sm:w-auto" disabled={isLoading}>
+                <Button type="submit" size="lg" className="h-14 px-8 text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground w-full sm:w-auto" disabled={isLoading}>
                   {isLoading ? 'Analizando...' : 'Optimizar Ahora'}
                 </Button>
               </form>
