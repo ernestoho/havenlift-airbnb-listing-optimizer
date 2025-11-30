@@ -86,7 +86,7 @@ export function HomePage() {
     setError(null);
     const validation = urlSchema.safeParse(url);
     if (!validation.success) {
-      setError(validation.error.errors[0].message);
+      setError(validation.error.issues[0].message);
       return;
     }
     setIsLoading(true);
